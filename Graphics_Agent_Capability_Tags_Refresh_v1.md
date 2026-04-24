@@ -1,5 +1,5 @@
 # Graphics Agent Instruction Set
-## HC/PHAC AI Capability Tags — Refreshed Slide Set
+## HC/PHAC AI Capability Tags - Refreshed Slide Set
 ### Version 1.0 | April 2026 | EA/TPO Working Reference
 
 ---
@@ -8,7 +8,7 @@
 
 Redraw the three-slide HC/PHAC AI Capability Tags deck with all identified issues resolved.
 The output must be executive-ready, ARB-defensible, and DA11y-compliant.
-Do not change any substantive content — only structure, visual treatment, and labeling.
+Do not change any substantive content - only structure, visual treatment, and labeling.
 
 ---
 
@@ -16,65 +16,65 @@ Do not change any substantive content — only structure, visual treatment, and 
 
 ### All Slides
 
-**Issue 1 — Unresolved slide number placeholder**
+**Issue 1 - Unresolved slide number placeholder**
 The breadcrumb bar reads `Slide # · [Context]`. The `#` token was never replaced.
 Fix: Replace with the actual slide number. Slide 1 = `1`, Slide 2 = `2`, Slide 3 = `3`.
 
-**Issue 2 — Em dashes throughout**
-The design system prohibits em dashes (`—`). They appear in slide titles, column headers,
+**Issue 2 - Em dashes throughout**
+The design system prohibits em dashes (em dash character). They appear in slide titles, column headers,
 and body text throughout all three slides.
-Fix: Replace every `—` with a colon (`:`) or plain hyphen (`-`) as context requires.
+Fix: Replace every em dash with a colon (`:`) or plain hyphen (`-`) as context requires.
 Examples:
-- `Health Canada — Regulatory Mandate` → `Health Canada: Regulatory Mandate`
-- `LabScan — HAIL Platform` → `LabScan: HAIL Platform`
-- `HAIL — Epi Pipelines` → `HAIL: Epi Pipelines`
-- `Cluster 8 — Reserved / To Be Confirmed` → `Cluster 8: Reserved / To Be Confirmed`
-- `Regulatory service delivery improvement —` (body text lead-in) → use a line break, not em dash
+- `Health Canada - Regulatory Mandate` → `Health Canada: Regulatory Mandate`
+- `LabScan - HAIL Platform` → `LabScan: HAIL Platform`
+- `HAIL - Epi Pipelines` → `HAIL: Epi Pipelines`
+- `Cluster 8 - Reserved / To Be Confirmed` → `Cluster 8: Reserved / To Be Confirmed`
+- `Regulatory service delivery improvement -` (body text lead-in) → use a line break, not em dash
 
-**Issue 3 — Governance tags use wrong color**
+**Issue 3 - Governance tags use wrong color**
 The governance tags at the bottom of slides 1 and 2 (Protected B, Canadian data residency,
 AIA compliance, PIA compliance, Governed access, Human oversight, Audit trail) are styled
 identically to the capability tags. They must be visually distinct.
 Fix: Style governance tags using `ENABLEMENT_GREY` (`#8A8FA3`) fill with white text.
 Capability tags keep `TEAL_600` (`#5E9EA3`). The governance row must read as a separate layer.
 
-**Issue 4 — HC AI Strategy focus area not labeled**
+**Issue 4 - HC AI Strategy focus area not labeled**
 The slides have no link to the HC AI Strategy priority focus areas. The design system requires
 all AI visuals to align to the strategy.
 Fix: Add a single strategy alignment label to the header band area of each slide.
 - Slide 1 (HC Regulatory Mandate): `HC AI Strategy: Enhance Regulatory Processes and Services`
 - Slide 2 (PHAC Surveillance Mandate): `HC AI Strategy: Scale and Strengthen Surveillance`
-- Slide 3 (Clusters 8 and 9): No strategy label — omit for this slide.
+- Slide 3 (Clusters 8 and 9): No strategy label - omit for this slide.
 Style: Small text, `TEXT_SECONDARY` (`#6D6E71`), right-aligned, in the sub-header band.
 
 ---
 
 ### Slides 1 and 2
 
-**Issue 5 — Uneven tag zone (ragged bottom)**
+**Issue 5 - Uneven tag zone (ragged bottom)**
 Columns have different numbers of capability tags. Columns with fewer tags leave large empty
 whitespace before the governance footer, creating visual imbalance.
 - Slide 1 column counts: PMRA = 4, HPFB = 3, ROEB = 3, HAIL Doc = 3, CANChat = 3
 - Slide 2 column counts: FluWatch = 3, LabScan = 3, HAIL Epi = 3, IRIDA = 4, GeoAI = 4
 Fix: Set the tag zone to a fixed height. Top-align tags within the zone. Do not stretch tags
-to fill space. Let the empty space sit at the bottom of the zone — this is preferable to
+to fill space. Let the empty space sit at the bottom of the zone - this is preferable to
 misaligned stretching. Add a light `TEAL_200` (`#CDE3E5`) horizontal rule or thin border
 below the tag zone to visually close it before the governance footer.
 
-**Issue 6 — Column 4 title wraps to three lines (Slide 1 only)**
+**Issue 6 - Column 4 title wraps to three lines (Slide 1 only)**
 "Document classification and triage" wraps to three lines in column 4 of Slide 1 while all
 other column titles wrap to two lines. This causes misalignment in the title row.
 Fix: Reduce font size in the title zone by 1pt uniformly across all five columns, or reword
 to: `Document classification and triage` with forced line break after `classification` to
 normalize wrapping.
 
-**Issue 7 — Mixed hyphen style in column headers**
+**Issue 7 - Mixed hyphen style in column headers**
 Column 4 Slide 1 uses a plain hyphen (`HAIL - Document Processing`) while all other columns
-use em dashes (`LabScan — HAIL Platform`). Per Issue 2, all em dashes must be replaced with
+use em dashes (`LabScan - HAIL Platform`). Per Issue 2, all em dashes must be replaced with
 hyphens or colons. After fixing Issue 2, confirm that column 4 Slide 1 is consistent with the
 others: use `HAIL: Document Processing` to match the colon convention.
 
-**Issue 8 — No cluster affiliation label**
+**Issue 8 - No cluster affiliation label**
 The slides show program areas (PMRA, HPFB, ROEB, etc.) but do not indicate which capability
 cluster each column maps to. This weakens ARB traceability.
 Fix: Add a cluster anchor badge to each column header.
@@ -94,7 +94,7 @@ Fix: Add a cluster anchor badge to each column header.
 Style: Small label, `TEXT_SECONDARY` (`#6D6E71`), italic, below the project name, above the
 capability title. Example: `Cluster 1  |  Regulatory Intake`
 
-**Issue 9 — Governance tags overflow in one row**
+**Issue 9 - Governance tags overflow in one row**
 The seven governance tags (Shared governance, Protected B, Canadian data residency, AIA
 compliance, PIA compliance, Governed access, Human oversight, Audit trail) are squeezed into
 one horizontal row. At reduced slide widths or lower resolution, this line risks crowding or
@@ -102,7 +102,7 @@ overflow.
 Fix: Allow the governance tag row to wrap into two rows if needed. The governance footer zone
 should have a fixed minimum height of two tag rows. Tags stay left-aligned. Use
 `ENABLEMENT_GREY` fill per Issue 3. Remove "Shared governance" as a tag and instead use it
-as a section label to the left of the tags — it reads as a category, not a tag value.
+as a section label to the left of the tags - it reads as a category, not a tag value.
 Revised structure:
 ```
 [Shared governance]   [Protected B]  [Canadian data residency]  [AIA compliance]  [PIA compliance]
@@ -114,19 +114,19 @@ Where `[Shared governance]` is a plain text label, not a pill.
 
 ### Slide 3
 
-**Issue 10 — "CAPABILITIES IN 3a / 3b" label references internal shorthand**
+**Issue 10 - "CAPABILITIES IN 3a / 3b" label references internal shorthand**
 The section heading "CAPABILITIES IN 3a / 3b THAT MAY DEPEND ON THIS CLUSTER" uses internal
 shorthand (`3a / 3b`) that is not self-explanatory to an external ARB audience.
 Fix: Replace with: `CANDIDATE DEPENDENCIES FROM HC AND PHAC MANDATE SLIDES`
 
-**Issue 11 — Em dashes in bullet lead-ins**
+**Issue 11 - Em dashes in bullet lead-ins**
 Bullet items on Slide 3 use em dashes to introduce the explanation:
-`Regulatory service delivery improvement — External stakeholder-facing...`
+`Regulatory service delivery improvement - External stakeholder-facing...`
 Fix: Replace em dash with period and line break, or reformat as:
 **Regulatory service delivery improvement.** External stakeholder-facing capabilities...
 Do not use em dashes.
 
-**Issue 12 — Cluster status bar overflow**
+**Issue 12 - Cluster status bar overflow**
 The nine cluster pills at the bottom of Slide 3 are too tight. "6 Enterprise Svc" breaks
 across two lines because the pill is too narrow.
 Fix: Reduce font size inside pills to 10pt. Expand pill widths proportionally. Abbreviate
@@ -135,20 +135,20 @@ as needed:
 - `6 Enterprise Svc` → `6 Ent. Services`
 Ensure all nine pills fit in one row without line breaks inside any pill.
 
-**Issue 13 — Open question boxes use dashed borders without accessible label**
+**Issue 13 - Open question boxes use dashed borders without accessible label**
 The dashed-border boxes for open questions are visually distinct but rely on the dashed border
-alone to signal "this is a question" — meaning is conveyed by style, not label.
+alone to signal "this is a question" - meaning is conveyed by style, not label.
 Fix: Add a bold label `Open question:` as the first element inside each box. The dashed border
 may remain as secondary visual reinforcement, but the label must carry the meaning.
 This is already partially done in the current version (`Open question` appears as inline text),
 but confirm it is present as a labeled element, not just styled body text.
 
-**Issue 14 — "Definition pending" repeated identically in both columns**
+**Issue 14 - "Definition pending" repeated identically in both columns**
 Both cluster columns display the identical heading "Definition pending" with no differentiation.
 This reads like a copy error.
 Fix: Retain "Definition pending" but add a disambiguation sub-label:
-- Cluster 8: `Definition pending — HC scope under review`
-- Cluster 9: `Definition pending — PHAC science mandate under review`
+- Cluster 8: `Definition pending - HC scope under review`
+- Cluster 9: `Definition pending - PHAC science mandate under review`
 Style: Subtitle font, `TEXT_SECONDARY`, below the main heading.
 
 ---
@@ -166,13 +166,13 @@ Apply the following tokens exactly. No substitutions.
 | BACKGROUND | `#F5F7F7` | Slide background |
 | TEXT_PRIMARY | `#4A4A4A` | Body text, descriptions |
 | TEXT_SECONDARY | `#6D6E71` | Project name labels, cluster badges, footers |
-| AI_GREEN | `#A6CE39` | AI capability tag border accent only — not fill |
+| AI_GREEN | `#A6CE39` | AI capability tag border accent only - not fill |
 | WHITE | `#FFFFFF` | Text on TEAL_900 and ENABLEMENT_GREY fills |
 
 **Color rules to enforce:**
 - Maximum 2 teal tones per slide
 - Governance elements (ENABLEMENT_GREY) must be visually isolated from capability elements (TEAL_600)
-- AI_GREEN may be used as a border or left-edge accent on capability tag pills only — never as fill
+- AI_GREEN may be used as a border or left-edge accent on capability tag pills only - never as fill
 - Do not use AI_GREEN on any structural or governance element
 
 ---
@@ -236,7 +236,7 @@ Apply the following tokens exactly. No substitutions.
 ```
 
 **Column separators:** Thin vertical line, TEAL_200 or TEAL_600, 1pt weight. Not a full
-TEAL_900 band — that is for the header only.
+TEAL_900 band - that is for the header only.
 
 ### Slide 3 (two-column cluster placeholder template)
 
@@ -283,7 +283,7 @@ Apply the following before declaring any slide complete:
   - WHITE on ENABLEMENT_GREY (#8A8FA3): verify passes 4.5:1
 - [ ] All body text: minimum 4.5:1 against slide background (#F5F7F7)
 - [ ] TEXT_SECONDARY (#6D6E71) on BACKGROUND (#F5F7F7): verify passes 4.5:1
-- [ ] No meaning conveyed by color alone — all tags labeled, all sections labeled
+- [ ] No meaning conveyed by color alone - all tags labeled, all sections labeled
 - [ ] Logical reading order: left to right, top to bottom in screen reader flow
 - [ ] Alt text required on all non-text elements. Tag: source = AI-generated. Block delivery
   until human-reviewed flag is set.
@@ -295,15 +295,15 @@ Apply the following before declaring any slide complete:
 | Foreground | Background | Estimated ratio | Pass/Fail |
 |---|---|---|---|
 | WHITE `#FFFFFF` | TEAL_900 `#2F6F73` | ~6.8:1 | PASS |
-| WHITE `#FFFFFF` | TEAL_600 `#5E9EA3` | ~3.2:1 | BORDERLINE — use bold text or adjust TEAL_600 |
-| WHITE `#FFFFFF` | ENABLEMENT_GREY `#8A8FA3` | ~3.1:1 | BORDERLINE — use bold text |
+| WHITE `#FFFFFF` | TEAL_600 `#5E9EA3` | ~3.2:1 | BORDERLINE - use bold text or adjust TEAL_600 |
+| WHITE `#FFFFFF` | ENABLEMENT_GREY `#8A8FA3` | ~3.1:1 | BORDERLINE - use bold text |
 | TEXT_PRIMARY `#4A4A4A` | BACKGROUND `#F5F7F7` | ~7.5:1 | PASS |
-| TEXT_SECONDARY `#6D6E71` | BACKGROUND `#F5F7F7` | ~4.5:1 | MARGINAL — use only for non-critical labels |
+| TEXT_SECONDARY `#6D6E71` | BACKGROUND `#F5F7F7` | ~4.5:1 | MARGINAL - use only for non-critical labels |
 
 **If TEAL_600 fails contrast at standard weight, either:**
 (a) darken TEAL_600 to `#4E8A8F` for pill fills only, or
 (b) use bold weight for all pill text.
-Do not change the design token — adjust the text weight.
+Do not change the design token - adjust the text weight.
 
 ---
 
@@ -324,9 +324,9 @@ the stated condition.
 
 ## Content Reference (Do Not Modify)
 
-The following content is canonical. Copy exactly — do not paraphrase, reorder, or omit.
+The following content is canonical. Copy exactly - do not paraphrase, reorder, or omit.
 
-### Slide 1 — HC Regulatory Mandate (five columns)
+### Slide 1 - HC Regulatory Mandate (five columns)
 
 | Column | Project | Capability Title | Description |
 |---|---|---|---|
@@ -346,7 +346,7 @@ The following content is canonical. Copy exactly — do not paraphrase, reorder,
 
 Governance tags: Protected B, Canadian data residency, AIA compliance, PIA compliance, Governed access, Human oversight, Audit trail
 
-### Slide 2 — PHAC Surveillance Mandate (five columns)
+### Slide 2 - PHAC Surveillance Mandate (five columns)
 
 | Column | Project | Capability Title | Description |
 |---|---|---|---|
@@ -366,7 +366,7 @@ Governance tags: Protected B, Canadian data residency, AIA compliance, PIA compl
 
 Governance tags: Protected B, Canadian data residency, AIA compliance, PIA compliance, Governed access, Human oversight, Audit trail
 
-### Slide 3 — Clusters 8 and 9
+### Slide 3 - Clusters 8 and 9
 
 **Title:** Two Clusters Remain. Their Dependencies Do Not.
 
@@ -413,8 +413,8 @@ Clusters 1 through 7: solid TEAL_600 fill.
 
 ## Mandatory Footer (All Slides)
 
-Left: `Unclassified / Non classifié` — minimum 11pt, TEXT_SECONDARY
-Right: `EA/TPO interpretation  ·  Digital Transformation Branch` — minimum 11pt, TEXT_SECONDARY
+Left: `Unclassified / Non classifié` - minimum 11pt, TEXT_SECONDARY
+Right: `EA/TPO interpretation  ·  Digital Transformation Branch` - minimum 11pt, TEXT_SECONDARY
 
 This footer must appear on every slide. It is required by EA visual design standards.
 The footer signals that this deck represents EA team working interpretation, not citeable GC policy.
@@ -424,23 +424,23 @@ The footer signals that this deck represents EA team working interpretation, not
 ## What to Preserve
 
 - All five-column structure on slides 1 and 2
-- All tag content — do not add or remove any tag
-- Disclaimer italic lines — keep verbatim
-- Cluster 8 and 9 placeholder language — do not speculate or fill in definitions
-- Three-item candidate dependency lists — do not expand or reduce
-- Open question wording — these are load-bearing governance questions, not decorative text
+- All tag content - do not add or remove any tag
+- Disclaimer italic lines - keep verbatim
+- Cluster 8 and 9 placeholder language - do not speculate or fill in definitions
+- Three-item candidate dependency lists - do not expand or reduce
+- Open question wording - these are load-bearing governance questions, not decorative text
 
 ---
 
 ## What Not to Do
 
-- Do not introduce icons — none appear in the current version; do not add them
+- Do not introduce icons - none appear in the current version; do not add them
 - Do not add decorative borders or shadow effects
 - Do not use AI_GREEN as a fill color on any element
-- Do not conflate capability tags with governance tags — they are separate visual layers
+- Do not conflate capability tags with governance tags - they are separate visual layers
 - Do not populate Clusters 8 and 9 with definitions or AI capability tags
 - Do not reorder capability tags within columns
-- Do not change the slide count — three slides only
+- Do not change the slide count - three slides only
 
 ---
 
