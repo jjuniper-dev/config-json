@@ -1,0 +1,164 @@
+EA PLATFORM CONVERGENCE AGENT — QUICK REFERENCE
+═════════════════════════════════════════════════════════════════════════════════
+
+CHARTER & SETUP
+───────────────
+Read EA-Agent-Instructions-v1.md first. This is your authoritative scope, constraints,
+and success criteria.
+
+Review config.json for agent configuration, convergence scenarios, stakeholder map,
+and quality standards.
+
+
+THE CORE QUESTION
+─────────────────
+Should PATH (HC-led governance control plane) and HAIL (PHAC-led AI runtime)
+CONVERGE into a single platform or remain CO-EQUAL with defined integration points?
+
+Answer determines ARB decision on enterprise AI platform strategy and shadow AI risk
+mitigation.
+
+
+DELIVERABLES (In Priority Order)
+─────────────────────────────────
+
+P1 — Convergence Framing Document (001-convergence-framing.md)
+   → 2000–2500 words
+   → Three explicit scenarios (A: Converge, B: Co-Equal, C: Defer PATH)
+   → EA-recommended position with tradeoff analysis
+   → Open dependencies listed
+   → OUTPUT: Direct use in ARB briefing
+
+P2 — WAF Assessment (002-waf-assessment.md)
+   → 1500–2000 words
+   → Operational Excellence and Reliability pillar analysis
+   → Table showing gaps, current state, scenario feasibility
+   → Evidence backing P1 framing
+   → OUTPUT: ARB evidence, stakeholder validation
+
+P3 — Risk Register (003-risk-register.md)
+   → 1000–1500 words
+   → Five key convergence risks with current mitigation, residual risk, scenario impact
+   → Escalation triggers for each risk
+   → OUTPUT: Monitoring dashboard, escalation narrative
+
+P4 — ADR-002: Protected B Hosting (004-adr-002.md)
+   → 800–1200 words
+   → Resolves PATH hosting decision (Azure.us vs. Commercial vs. Hybrid)
+   → Linked from P1 document
+   → OUTPUT: ARB-ready decision record
+
+P5 — Shadow AI Narrative (005-shadow-ai-narrative.md)
+   → 800–1200 words
+   → Business risk frame: why workloads route to ungoverned platforms
+   → Use case recognition (PMRA, Surveillance, etc.)
+   → Why convergence decision matters to institution
+   → OUTPUT: DM/ADM briefing material
+
+
+ANALYTICAL FRAMEWORK
+────────────────────
+Baseline: Azure Well-Architected Framework (WAF)
+
+Primary Assessment Pillars:
+  • Operational Excellence — Integration feasibility, FinOps unification
+  • Reliability — RTO/RPO targets, shared dependency risk
+
+Secondary Dimensions:
+  • Governance Coherence — Can policies be enforced consistently?
+  • Data Residency & Sovereignty — Unclassified vs. Protected B constraints
+  • FinOps Clarity — Cost attribution per scenario
+  • Shadow AI Risk — Which scenario delivers governance fastest?
+
+
+STAKEHOLDER VALIDATION CHECKLIST
+─────────────────────────────────
+Before finalizing any deliverable, validate with:
+
+[ ] Kirk (Security/ATO)
+    → ATO path assumptions per scenario?
+    → Data residency implications?
+
+[ ] Jason (Cloud Operations)
+    → Foundry availability constraints?
+    → FinOps model feasibility?
+    → Operational support capacity per scenario?
+
+[ ] Sam, Mohamed (PMRA/Regulatory)
+    → Use case priority and timeline sensitivity?
+    → Governance requirements for Protected B?
+
+[ ] Chad, Ali (EA Leadership)
+    → Alignment with DTB strategy and cluster model?
+    → Framing suitable for ARB/DM?
+
+Document feedback in simple feedback log. Track confirmed assumptions, refinements,
+and open items.
+
+
+QUALITY GATES
+─────────────
+Each deliverable must pass:
+
+1. SINGLE-FILE ARTIFACT
+   → Markdown or Word, no fragments, suitable for direct handoff
+
+2. NO UNJUSTIFIED JARGON
+   → Define on first use (Gatekeeper pattern, SACR integration, shadow AI, etc.)
+   → Assume ARB includes non-architects
+
+3. EVIDENCE-BASED
+   → Every claim grounded in documented source
+   → No speculation
+
+4. DECISION-READY
+   → ARB moves to decision without requesting clarification
+
+
+TIMELINE
+────────
+ARB Meeting: 4–6 weeks
+Draft P1 Delivery: 2 weeks
+Feedback Iteration: 1 cycle
+Final Package Ready: 3–4 weeks
+
+
+ESCALATION TRIGGERS
+───────────────────
+If any of these occur, escalate immediately to EA lead:
+
+• Timeline slips past 2-week P1 draft deadline
+• Stakeholder feedback contradicts core assumptions (flag, don't rewrite around it)
+• Risk register identifies P1 item that wasn't previously documented
+• ADR-002 decision blocked by unresolved data residency constraint
+• Shadow AI narrative reveals new PMRA use case outside scope assumptions
+
+
+SUCCESS = ARB CAN DECIDE
+─────────────────────────
+You have succeeded when:
+
+✓ ARB has three explicit convergence options with clear tradeoffs
+✓ EA recommended position is stated and defensible
+✓ Stakeholders (security, cloud ops, PMRA, EA leadership) have signed off or
+  documented exceptions
+✓ Risk register flags three P1 items the convergence decision directly mitigates
+✓ ADR-002 completed and linked
+✓ All deliverables are clean, ARB-ready outputs
+
+Your deliverables directly shape institutional decisions — clarity is your
+responsibility.
+
+
+QUICK LINKS
+───────────
+EA-Agent-Instructions-v1.md   (Full charter, constraints, success criteria)
+config.json                    (Configuration, scenarios, stakeholder map)
+templates/                     (Working templates for each P deliverable)
+intelligence/                  (Reference docs: HAIL current state, PATH vision, etc.)
+deliverables/                  (Output artifacts as completed)
+
+
+Questions? Escalate to EA lead. Clarity first.
+
+Classification: Unclassified / For Internal Use
