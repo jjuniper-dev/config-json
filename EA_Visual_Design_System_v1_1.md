@@ -1,4 +1,4 @@
-# EA Visual Design System — Instruction Set v1.1
+# EA Visual Design System - Instruction Set v1.1
 *Health Canada / Public Health Agency of Canada*
 *Classification: Unclassified / Non classifié*
 *Updated: April 2026*
@@ -24,7 +24,7 @@ Produce clean, consistent, and semantically correct EA visuals that communicate 
 | TEAL_900 | #2F6F73 | Headers, authority elements |
 | TEAL_600 | #5E9EA3 | Core content blocks |
 | TEAL_200 | #CDE3E5 | Background panels |
-| AI_GREEN | #A6CE39 | AI signal only — never for structure |
+| AI_GREEN | #A6CE39 | AI signal only - never for structure |
 | AI_GREEN_SOFT | #D6E87A | AI secondary accent |
 | ENABLEMENT_GREY | #8A8FA3 | Governance elements |
 | BACKGROUND | #F5F7F7 | Slide or canvas background |
@@ -35,7 +35,7 @@ Produce clean, consistent, and semantically correct EA visuals that communicate 
 **Rules:**
 - Maximum 2 teal tones per visual
 - Maximum 1 green usage cluster
-- Green is for AI signal only — never for structure
+- Green is for AI signal only - never for structure
 - Governance color must be visually isolated
 
 ---
@@ -48,7 +48,7 @@ Produce clean, consistent, and semantically correct EA visuals that communicate 
 
 **Capability tile:** TEAL_600, title plus short description, equal width across row.
 
-**AI highlight:** AI_GREEN border or accent — AI-driven elements only.
+**AI highlight:** AI_GREEN border or accent - AI-driven elements only.
 
 **Governance panel:** ENABLEMENT_GREY, right-side or clearly separated.
 
@@ -89,7 +89,7 @@ Always separate layers visually. Never mix them.
 
 **Business layer:** Needs and problems.
 
-**Capability layer:** What must exist. All capability-layer visuals must use the HC/PHAC nine-cluster taxonomy as the structural reference. The canonical source for cluster structure is Chad's ARB deck (2026-03-31). All capability labels must anchor to GC Business Capability Model (BCM) Level 3 (L3) identifiers. Clusters 8 and 9 remain placeholders — do not populate or label them without confirming the source in the v2.3 workbook.
+**Capability layer:** What must exist. All capability-layer visuals must use the HC/PHAC nine-cluster taxonomy as the structural reference. The canonical source for cluster structure is Chad's ARB deck (2026-03-31). All capability labels must anchor to GC Business Capability Model (BCM) Level 3 (L3) identifiers. Clusters 8 and 9 remain placeholders - do not populate or label them without confirming the source in the v2.3 workbook.
 
 **Technology layer:** How it is delivered.
 
@@ -106,22 +106,22 @@ Always separate layers visually. Never mix them.
 | 5 | Cybersecurity |
 | 6 | Enterprise Service Platforms |
 | 7 | Infrastructure and Connectivity |
-| 8 | Reserved — to be confirmed |
-| 9 | Reserved — to be confirmed |
+| 8 | Reserved - to be confirmed |
+| 9 | Reserved - to be confirmed |
 
 ---
 
 ## 6. AI-specific rules
 
-Highlight AI only where it adds value. Do not present tools as the solution. Emphasize capability over product. Show dependencies — data, governance, infrastructure.
+Highlight AI only where it adds value. Do not present tools as the solution. Emphasize capability over product. Show dependencies - data, governance, infrastructure.
 
 All AI visuals must align to the HC AI Strategy (DTBCC) priority focus areas and enabling pillars.
 
 **Three priority focus areas (HC AI Strategy):**
 
-- Empower the Workforce — AI streamlines programs, regulatory work, and internal services through task automation and improved data workflows.
-- Scale and Strengthen Surveillance — AI supports real-time monitoring of health and safety signals.
-- Enhance Regulatory Processes and Services — AI improves service delivery, reduces workload, and strengthens regulatory functions.
+- Empower the Workforce - AI streamlines programs, regulatory work, and internal services through task automation and improved data workflows.
+- Scale and Strengthen Surveillance - AI supports real-time monitoring of health and safety signals.
+- Enhance Regulatory Processes and Services - AI improves service delivery, reduces workload, and strengthens regulatory functions.
 
 **Four enabling pillars (HC AI Strategy):**
 
@@ -195,7 +195,7 @@ Do not advance to Delivered without passing through Human reviewed and Compliant
 
 - Font: Arial or Calibri. Body text: 18pt minimum.
 - Slide background: #F4F6F7
-- Classification footer: "Unclassified / Non classifié" — bottom left, minimum 12pt
+- Classification footer: "Unclassified / Non classifié" - bottom left, minimum 12pt
 - Straight arrows only; no overlapping shapes
 - Rounded rectangles only for content shapes
 
@@ -206,8 +206,8 @@ Do not advance to Delivered without passing through Human reviewed and Compliant
 When generating a visual, always provide:
 
 1. Title
-2. Structure — clear text layout
-3. Component mapping — which elements are tiles, containers, panels
+2. Structure - clear text layout
+3. Component mapping - which elements are tiles, containers, panels
 4. Color application
 5. Optional: PowerPoint-ready layout description
 
