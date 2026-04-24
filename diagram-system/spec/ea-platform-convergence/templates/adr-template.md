@@ -1,312 +1,297 @@
-# ADR-002: Protected B Hosting Architecture for PATH
+# ADR-002: Protected B Hosting Architecture for PATH and HAIL
 
-**Status:** [DRAFT / PROPOSED / ACCEPTED / SUPERSEDED / DEPRECATED]  
-**Decision Date:** [INSERT DATE]  
-**Classification:** Unclassified / For Internal Use  
-**Authors:** [Kirk (Security), Jason (Cloud Ops)]  
+**Status:** [DRAFT / PROPOSED / ACCEPTED / SUPERSEDED / DEPRECATED]
+**Decision Date:** [INSERT DATE]
+**Classification:** Unclassified / For Internal Use
+**Authors:** [Kirk (Security), Jason (Cloud Ops)]
 **Stakeholders:** EA Team, CDO/OCDO, PATH Governance Team, HAIL Operations
 
----
+-----
 
 ## Title
 
-**Protected B Hosting Architecture: Azure Government Cloud vs. Commercial Azure with Enhanced Controls**
+**Protected B Hosting Architecture: SA&A Path for Azure Canada AI Workloads (SSC CBS, CCCS PBMM)**
 
----
+-----
 
 ## Decision
 
-**Will PATH host Protected B AI workloads on Azure Government Cloud (Azure.us) or commercial Azure (Canada regions) with additional security controls?**
+**What procurement model and SA&A path will PATH and HAIL use to achieve Protected B authorization for AI workloads on Microsoft Azure within the Government of Canada?**
 
----
+Note: Azure Government Cloud (Azure.us) is a US federal cloud product operated by Microsoft for US government entities. GC federal departments are not eligible customers. The relevant options for HC/PHAC are within the commercial Azure Canada footprint, governed by SSC and CCCS standards.
+
+-----
 
 ## Context
 
 ### Why This Decision Matters
 
-1. **Data Residency & Sovereignty:** Protected B information may require residency in government-designated infrastructure. Azure.us (Government Cloud) vs. commercial Azure (Canada) affects regulatory compliance and control assurance.
+1. **Protected B Authorization:** HAIL is deployed but lacks Protected B production ATO. PATH is pre-prototype and requires a clear SA&A path before approval to proceed. Both platforms require Security Assessment and Authorization (SA&A) before hosting Protected B AI workloads in production.
+1. **SSC as Procurement Intermediary:** For GC departments, cloud services are procured through the SSC Cloud Brokering Service (CBS). HC/PHAC Azure subscriptions are provisioned via SSC. The SA&A path and operational model must be compatible with the SSC tenant structure.
+1. **CCCS PBMM Compliance Baseline:** Protected B workloads in commercial cloud must meet the CCCS Protected B, Medium Integrity, Medium Availability (PBMM) security profile. This profile is documented in ITSG-33 and the GC Cloud Security Risk Management framework. Compliance is a prerequisite for SA&A approval.
+1. **TBS 12 GC Cloud Guardrails:** Treasury Board Secretariat requires all GC departments to implement the 12 GC Cloud Guardrails for Azure before onboarding any workloads. These guardrails are the mandatory baseline. PBMM controls build on top of them.
+1. **Convergence and Integration:** The SA&A path chosen must be compatible with PATH/HAIL convergence. A path that creates separate tenants or separate subscription structures will add integration complexity and FinOps fragmentation.
+1. **Shadow AI Risk:** If PATH and HAIL cannot achieve Protected B SA&A in time, programs will route to ungoverned tools. The hosting and SA&A path directly affects the timeline for eliminating this risk.
 
-2. **Shadow AI Risk:** If PATH cannot confidently deliver Protected B governance in time, workloads will route to ungoverned platforms (CANChat, Copilot, deprecated RADIA). Hosting model affects ATO timeline and governance confidence.
+### Regulatory and Policy Drivers
 
-3. **Service Availability:** Azure.us has limited service availability compared to commercial Azure. Some services (e.g., Azure AI Foundry, Databricks) may not be available in Azure.us, constraining platform architecture.
-
-4. **FinOps Impact:** Azure.us typically has cost premium vs. commercial Azure. Affects client billing and platform sustainability.
-
-5. **Operational Complexity:** Azure.us requires separate credentials, separate networking, separate governance infrastructure. Commercial Azure + enhanced controls enables single unified infrastructure.
-
-### Regulatory Drivers
-
-- **Directive on Automated Decision-Making:** Audit trails, explainability requirements
-- **Treasury Board AI Guidance:** Data governance, risk mitigation
-- **GCSEC / ITSP.40.111:** Information Security Controls for cloud environments
-- **Privacy Impact Assessment (PIA):** Data handling, third-party processing
+- **CCCS PBMM Profile** (Protected B, Medium Integrity, Medium Availability) – required for Protected B in commercial cloud
+- **TBS 12 GC Cloud Guardrails for Azure** – mandatory baseline before any GC workload onboarding
+- **ITSG-33** (IT Security Risk Management: A Lifecycle Approach) – CCCS framework underlying the PBMM controls catalogue
+- **GC Cloud Security Risk Management Framework** – overall framework for cloud SA&A
+- **Directive on Automated Decision-Making (DADM)** – audit trails, explainability, and impact assessment requirements
+- **Algorithmic Impact Assessment (AIA)** – required for GC AI systems; determines automation tier and associated controls
+- **Privacy Impact Assessment (PIA)** – data handling and third-party processing obligations
+- **SSC Cloud Brokering Service (CBS) Terms** – procurement obligations for departments using SSC-brokered cloud
+- **Treasury Board Policy on Government Security** – overarching security obligation
 
 ### Stakeholder Positions
 
 **Security (Kirk):**
-- Azure.us provides highest assurance for Protected B
-- Commercial Azure + controls is operationally simpler
-- Either requires formal ATO approval; both acceptable
+
+- CCCS PBMM is the correct standard for Protected B in commercial cloud
+- Full SA&A with validated PBMM controls provides a defensible ATO position
+- Incremental SA&A building on HAIL's baseline is faster but requires HAIL controls to be further along
+- Either approach acceptable if controls are validated
 
 **Cloud Operations (Jason):**
-- Commercial Azure enables full AI Foundry availability
-- Azure.us limits PaaS service selection
-- Commercial Azure has lower operational overhead
+
+- SSC CBS tenant structure affects subscription design and operational model
+- Azure Canada (Canada Central / Canada East) provides full AI Foundry and Databricks availability
+- Single tenant with shared controls is operationally simpler than separate subscription structures
+- Purview governance overhead is manageable within the existing Azure Landing Zone
 
 **Finance:**
-- Azure.us cost premium is secondary concern
-- Cost predictability and per-workload attribution matter more
-- Either option acceptable if cost model is clear
+
+- SSC CBS pricing model vs. direct agreement affects cost attribution and chargeback
+- Per-workload cost tracking is the priority regardless of procurement path
+- FinOps framework must be defined before Protected B workloads onboard
 
 **EA Leadership:**
-- Hosting decision affects convergence timeline
-- Should enable HAIL/PATH integration (consistent residency)
-- Should not create operational fragmentation
 
----
+- Hosting and SA&A path must enable HAIL/PATH convergence on the same Azure Landing Zone
+- Decision must not create operational or governance fragmentation between HC and PHAC
+- SA&A timeline is a blocking constraint for the platform roadmap
+
+-----
 
 ## Options Considered
 
-### Option 1: Azure Government Cloud (Azure.us)
+### Option 1: Azure Canada via SSC CBS – Full PBMM SA&A (Standard GC Path)
 
-**Description:**  
-Host all PATH Protected B workloads in Azure Government Cloud (Azure.us). Requires separate Azure subscriptions, separate credential management, separate governance infrastructure.
+**Description:**
+Host all PATH and HAIL Protected B AI workloads in Azure Canada (Canada Central primary, Canada East DR) via SSC Cloud Brokering Service. Implement the full CCCS PBMM controls catalogue. Complete a full SA&A (Statement of Sensitivity, Statement of Applicability, Security Assessment, Authorization) before onboarding Protected B workloads.
 
-**Rationale:**
-- Highest assurance for Protected B data residency
-- Explicit government regulatory alignment
-- Separates Protected B workloads from commercial Azure
+**GC Procurement Path:**
 
-**Advantages:**
-- ✅ Highest assurance for Protected B residency
-- ✅ Explicit government cloud governance model
-- ✅ Clear regulatory alignment (GC AI policy)
-- ✅ Physical separation from commercial infrastructure (security boundary)
+- Subscription provisioned via SSC CBS
+- Microsoft Canada customer commitments in effect (data residency, sovereignty)
+- Compliance monitoring via SSC and departmental security authorities
 
-**Disadvantages:**
-- ❌ Azure AI Foundry not available (or limited capability)
-- ❌ Databricks not available
-- ❌ Limited PaaS service portfolio (App Service, Functions, SQL, Storage available but limited SKUs)
-- ❌ Vendor lock-in to Azure Government (higher switching cost)
-- ❌ Cost premium (~15–20% vs. commercial Azure)
-- ❌ Separate credential and access management (operational overhead)
-- ❌ May require separate HAIL deployment in Azure.us (integration complexity)
-- ❌ Slower service release cycle (features lag commercial Azure by 6–12 months)
+**PBMM Controls Scope:**
 
-**ATO Timeline:**
-- SoS approval faster (government cloud implicit compliance)
-- ATO review slightly faster (~2 weeks shorter)
-- **Estimated ATO completion: Q3 2026**
-
-**Operational Complexity:**
-- Separate Azure environment (credential management, billing, support)
-- No integration with commercial Azure (if HAIL remains in Canada)
-- Separate ops team or extended ops training required
-
-**Convergence Impact (Scenario A/B/C):**
-- If HAIL remains in commercial Azure, creates data residency split (Protected B in.us, Unclassified in Canada)
-- Requires explicit integration gateway (adds complexity)
-- May force HAIL to migrate to Azure.us as well (convergence cost)
-
----
-
-### Option 2: Commercial Azure + Enhanced Controls
-
-**Description:**  
-Host PATH Protected B workloads in commercial Azure (Canada Central, Canada East). Implement additional encryption, network controls, and Purview governance to meet Protected B assurance requirements.
-
-**Enhanced Controls Detail:**
-- **Encryption:** Application-level encryption + Azure Storage Service Encryption (SSE) + Transparent Data Encryption (TDE) for database
-- **Network:** Azure Private Link, Network Security Groups (NSGs), Azure Firewall, DDoS Protection Standard
-- **Data Governance:** Purview Data Map, sensitivity labels, data classification, Data Loss Prevention (DLP) policies
-- **Access Control:** RBAC with Privileged Identity Management (PIM), Azure AD conditional access
-- **Audit & Compliance:** Azure Policy enforcement, compliance monitoring, audit logging to Log Analytics, Microsoft Sentinel
-
-**Rationale:**
-- Full Azure service availability (including AI Foundry, Databricks)
-- Operationally simpler (single Azure environment)
-- Cost-effective (no premium vs. commercial Azure)
-- Enables HAIL/PATH integration on same cloud
-- Canada data residency (PIPEDA compliant)
+- Encryption: Application-level + Azure Storage Service Encryption (SSE) + Transparent Data Encryption (TDE)
+- Network: Azure Private Link, NSGs, Azure Firewall, DDoS Protection Standard
+- Identity: RBAC with Privileged Identity Management (PIM), Entra ID conditional access
+- Data Governance: Microsoft Purview Data Map, sensitivity labels, Data Loss Prevention (DLP)
+- Audit: Azure Policy, Log Analytics, Microsoft Sentinel
+- Guardrails: All 12 TBS GC Cloud Guardrails implemented and validated
 
 **Advantages:**
-- ✅ Full Azure AI Foundry + Databricks availability (no feature constraints)
-- ✅ Lower operational complexity (single Azure environment)
-- ✅ No cost premium (commercial Azure pricing)
-- ✅ Faster service updates (commercial release cycle)
-- ✅ Enables easy HAIL/PATH integration (same cloud)
-- ✅ Canada data residency (PIPEDA alignment)
-- ✅ Established enterprise Azure controls portfolio (Microsoft, GC partners validate controls)
 
-**Disadvantages:**
-- ❌ Controls must be validated for Protected B assurance (SoS process required)
-- ❌ Higher governance overhead (multiple controls to manage)
-- ❌ Operational complexity: teams must understand enhanced controls, enforce consistently
-- ❌ Risk of control misconfiguration (requires training, oversight)
-- ❌ SoS approval may take longer (controls must be validated case-by-case, not implicit)
-
-**ATO Timeline:**
-- SoS approval requires control validation (longer review)
-- Controls must be audited and tested
-- **Estimated ATO completion: Q3–Q4 2026 (2–4 weeks longer than Azure.us)**
-
-**Operational Complexity:**
-- Single Azure environment (credential management shared with HAIL if converged)
-- Enhanced controls require ongoing monitoring and compliance validation
-- Purview governance overhead (PII tagging, sensitivity labels, DLP enforcement)
-
-**Convergence Impact (Scenario A/B/C):**
-- Enables clean HAIL/PATH convergence (both on same cloud)
-- Single residency decision (Canada or US) applies to both
+- Full CCCS PBMM compliance – most defensible SA&A position
+- Standard GC path – auditable procurement and governance chain
+- Full Azure AI Foundry and Databricks availability (Canada Central / Canada East)
+- Canada data residency – PIPEDA compliant, Microsoft Canada sovereignty commitments
+- Enables clean HAIL/PATH convergence on same Azure Landing Zone
 - Shared Purview instance, shared Azure Policy, unified governance infrastructure
-- **Strongly preferred for Scenario A (Converge)**
-
----
-
-### Option 3: Hybrid — Phase 1 Commercial Azure, Phase 2 Azure.us (If Required)
-
-**Description:**  
-Phase 1: Deploy PATH on commercial Azure + enhanced controls by Q3 2026 (fast to ATO). Phase 2: If regulatory requirement becomes mandatory, migrate to Azure.us by Q4 2026–Q1 2027.
-
-**Rationale:**
-- Fast initial delivery (no waiting on Azure.us validation)
-- Risk mitigation option (migrate if regulatory requirement emerges)
-- Preserves option to converge with HAIL initially, then diverge if needed
-
-**Advantages:**
-- ✅ Fastest path to initial ATO (Q3 2026, no delay)
-- ✅ Preserves HAIL/PATH convergence option (both on commercial initially)
-- ✅ Mitigation option if regulatory requirement changes
-- ✅ Lower upfront cost
 
 **Disadvantages:**
-- ❌ Requires architectural rework in Phase 2 (if migration needed)
-- ❌ Operational overhead of maintaining two platforms temporarily (Phase 1 + Phase 2 transition)
-- ❌ SoS and ATO work may duplicate (Phase 1 controls validation + Phase 2 Azure.us validation)
-- ❌ Risk of Phase 2 never occurring (technical debt accumulates in Phase 1)
-- ❌ Client confusion about residency posture during transition
 
-**ATO Timeline:**
-- Phase 1: Q3 2026 (commercial Azure ATO)
-- Phase 2: Q4 2026–Q1 2027 (if migration approved; ~12 weeks for migration + Azure.us ATO)
-- **Total: 6–9 months**
+- Longest SA&A timeline – all controls must be implemented and tested before authorization
+- Full PBMM catalogue is broad – governance overhead is significant
+- SSC CBS provisioning timelines add lead time at start
+- Requires departmental security authority engagement throughout
 
-**Operational Complexity:**
-- Phase 1: Single platform on commercial Azure
-- Transition: Migration planning, parallel ops during cutover
-- Phase 2: Single platform on Azure.us
+**SA&A Timeline:**
 
-**Convergence Impact (Scenario A/B/C):**
-- Phase 1: Enables HAIL/PATH convergence on commercial Azure
-- Phase 2: If HAIL does not migrate, creates residency split (complexity)
-- Deferred decision on HAIL residency (not ideal)
+- Statement of Sensitivity (SoS): Q1 2026 (in progress or complete for HAIL)
+- Statement of Applicability (SoA): Q1-Q2 2026
+- Security Assessment: Q2 2026
+- Authorization (ATO): Q3-Q4 2026
+- **Estimated Protected B production: Q3-Q4 2026**
 
----
+**Convergence Impact:**
+
+- Strongly preferred for Scenario A (Converge): both HAIL and PATH on same Landing Zone under shared SA&A
+- Single residency model: Canada Central / Canada East for all workloads
+- Unified FinOps, credential management, and support model
+
+-----
+
+### Option 2: Azure Canada via SSC CBS – Incremental SA&A Building on HAIL Baseline
+
+**Description:**
+Host PATH Protected B workloads in Azure Canada (Canada Central / Canada East) via SSC CBS, but accelerate the SA&A process by inheriting and extending HAIL's existing controls baseline. PATH SA&A would be scoped as an incremental addition to an already-assessed HAIL environment rather than a standalone SA&A.
+
+**Prerequisite:**
+HAIL must have completed or be near completion of its own PBMM SA&A. PATH inherits validated controls and documents only the delta (additional services, patterns, use cases).
+
+**Advantages:**
+
+- Faster SA&A timeline if HAIL baseline is validated
+- Reduced documentation duplication
+- Consistent controls baseline between HAIL and PATH (convergence-friendly)
+- Lower governance overhead for PATH stand-up
+
+**Disadvantages:**
+
+- Dependency on HAIL SA&A being sufficiently complete – HAIL ATO is currently a blocking constraint
+- If HAIL controls are not validated, PATH inherits unvalidated controls (security risk)
+- Requires explicit agreement with departmental security authority that inheritance model is acceptable
+- Less defensible if HAIL and PATH serve different workload types with different sensitivity profiles
+
+**SA&A Timeline:**
+
+- Contingent on HAIL SA&A milestone: if HAIL achieves ATO Q2 2026, PATH incremental SA&A could complete Q3 2026
+- If HAIL ATO slips, PATH timeline slips equally
+- **Estimated Protected B production: Q3 2026 (optimistic) / Q4 2026 (contingent)**
+
+**Convergence Impact:**
+
+- Strongly aligned with Scenario A (Converge): shared SA&A baseline enforces convergence
+- Risk: if HAIL and PATH teams are not coordinated, incremental SA&A may diverge in scope
+
+-----
+
+### Option 3: SSC-Managed On-Premises / GC Data Centre
+
+**Description:**
+Host PATH Protected B AI workloads in SSC-managed on-premises infrastructure (GC data centre). Protected B assured without cloud SA&A. No commercial cloud dependency.
+
+Note: This option is included for completeness and to formally reject it. It is not viable for the PATH/HAIL AI platform architecture.
+
+**Advantages:**
+
+- Protected B assured without cloud SA&A process
+- No commercial cloud procurement dependency
+- Highest physical control over infrastructure
+
+**Disadvantages:**
+
+- Azure AI Foundry not available
+- Databricks not available
+- No access to Azure Landing Zone services (Purview, Sentinel, AI Search, Cosmos DB, Key Vault)
+- Long provisioning timelines (months to years for new capacity)
+- High capital and operational cost
+- No path to converge with HAIL (which is Azure-based)
+- Incompatible with enterprise AI platform architecture direction
+
+**SA&A Timeline:**
+
+- Not applicable in current form – would require re-architecting the platform
+- **Estimated Protected B production: Not viable within EA planning horizon**
+
+**Convergence Impact:**
+
+- Incompatible with HAIL/PATH convergence (HAIL is Azure-based)
+- Effectively represents abandoning the enterprise AI platform architecture
+
+-----
 
 ## Decision Rationale
 
-### Recommended Option: **Option 2 — Commercial Azure + Enhanced Controls**
+### Recommended Option: **Option 1 – Azure Canada via SSC CBS with Full PBMM SA&A**
+
+**With an accelerated execution approach aligned to Option 2 where HAIL's validated controls baseline can be inherited.**
 
 **Justification:**
 
-1. **Convergence Enablement:** Option 2 enables clean HAIL/PATH convergence on the same cloud (critical for Scenario A). Option 1 forces HAIL to migrate to Azure.us or creates residency fragmentation (bad for Scenario B).
+1. **Regulatory Defensibility:** Full PBMM SA&A via SSC CBS is the standard GC path and the most auditable position. ARB and OCDO scrutiny is expected; a non-standard path introduces governance risk.
+1. **Convergence Enablement:** Both HAIL and PATH on the same Azure Landing Zone, same SSC CBS subscription structure, same PBMM controls baseline. This is the cleanest path to Scenario A convergence.
+1. **Service Availability:** Azure AI Foundry and Databricks are core to the platform architecture. Canada Central / Canada East provide full commercial Azure service availability with no feature constraints.
+1. **Canada Data Residency:** Canada Central / Canada East data centres. Microsoft Canada customer commitments. PIPEDA-aligned. Data does not cross into US infrastructure.
+1. **Timeline:** Q3-Q4 2026 for Protected B production is consistent with the enterprise planning horizon. If HAIL controls baseline matures faster, Option 2 acceleration is available without changing the overall architecture.
+1. **FinOps Simplicity:** Single SSC CBS procurement model. Shared cost attribution, unified billing, clear per-workload chargeback.
 
-2. **Service Availability:** AI Foundry and Databricks are core to PATH and HAIL architecture. Option 1 constrains feature set; Option 2 enables full capability.
+**Success Condition:**
+Departmental security authority accepts PBMM controls as satisfying Protected B requirements for AI Landing Zone workloads. If scope of AI workloads expands beyond current use cases, SA&A must be re-scoped and re-authorized.
 
-3. **Operational Simplicity:** Single Azure environment (Option 2) is operationally simpler than separate Azure.us + commercial Azure (Option 1) or phased migration (Option 3).
-
-4. **ATO Timeline:** Option 2 timeline (Q3–Q4 2026) is acceptable and enables convergence decision by Q2 2026. Option 1 timeline is not significantly faster (SoS approval gain ~2 weeks; offset by validation overhead).
-
-5. **Cost:** Option 2 is cost-neutral vs. commercial Azure. Option 1 is 15–20% premium. Option 3 has rework cost.
-
-6. **Regulatory Alignment:** Enhanced controls (encryption, network isolation, Purview governance) meet Protected B assurance requirements without forcing Azure.us. Treasury Board and GCSEC guidance support controls-based approach.
-
-**Success Condition:**  
-SoS process must validate that enhanced controls meet Protected B assurance requirements. If SoS validation fails, escalate to Option 1 (Azure.us).
-
----
+-----
 
 ## Consequences
 
 ### What This Decision Enables
 
-1. **HAIL/PATH Convergence:** Both platforms on same Azure cloud. Unified governance infrastructure, single Purview instance, shared Azure Policy.
-
-2. **Federated Residency Model:** Canada regions for Unclassified + Protected B. Explicit separation from US-based infrastructure (reduces geopolitical risk).
-
-3. **Operational Simplicity:** Single credential management, single support model, unified FinOps.
-
-4. **Full Feature Availability:** AI Foundry, Databricks, all modern PaaS services available for PATH and HAIL.
-
-5. **Cost Efficiency:** Commercial Azure pricing; no premium for government cloud; economies of scale on shared infrastructure.
+1. **HAIL/PATH Convergence:** Both platforms on same Azure Landing Zone (Canada Central / Canada East). Unified governance infrastructure: single Purview instance, shared Azure Policy, unified Sentinel workspace.
+1. **Canada Residency Model:** All Unclassified and Protected B workloads reside in Canada. No cross-border data flow to US infrastructure. Consistent with Microsoft Canada commitments.
+1. **Full Platform Capability:** AI Foundry, Databricks, Unity Catalog, AI Search, Cosmos DB, Key Vault – all available in Canada regions. No feature constraints from hosting choice.
+1. **Operational Simplicity:** Single SSC CBS tenant and subscription structure. Single credential management, single support model, unified FinOps.
+1. **Compliance Chain:** Clear audit trail from TBS Guardrails through PBMM controls through SA&A authorization. Defensible at ARB and audit.
 
 ### What This Decision Constrains
 
-1. **No Azure.us Residency:** Protected B data remains on commercial Azure. Not suitable for workloads requiring explicit government cloud residency (rare for Health Canada; none currently identified).
+1. **SSC CBS Dependency:** Provisioning timelines and subscription changes go through SSC CBS. Departments cannot unilaterally modify subscription structure.
+1. **PBMM Controls Overhead:** Full PBMM catalogue requires ongoing monitoring, Purview governance, DLP enforcement, PIM access reviews. Operational burden is significant.
+1. **SA&A Lead Time:** SA&A completion is required before Protected B production onboarding. Timeline is not compressible below the security authority review cycle.
+1. **Canada-Only Residency:** Data resides in Canada only. Not suitable for workloads requiring cross-border or US data processing (none currently identified for HC/PHAC).
 
-2. **Enhanced Controls Burden:** Teams must understand and enforce additional governance (Purview, DLP, PIM). Training required.
-
-3. **Canada-Only Residency:** Data must reside in Canada. No multi-region failover to US (if future requirement emerges).
-
-4. **Compliance Monitoring:** Purview and Azure Policy must be continuously monitored. Non-compliance must be remediated quickly (governance gates enforce).
-
----
+-----
 
 ## Alternatives Rejected
 
-### Why Not Option 1 (Azure.us)?
+### Why Not Option 2 (Incremental SA&A) as Primary Path?
 
-- ❌ Constrains AI Foundry and Databricks availability (features PATH/HAIL depend on)
-- ❌ Prevents HAIL/PATH convergence on same cloud (creates integration complexity)
-- ❌ Higher operational overhead (separate environment, separate creds, separate support)
-- ❌ No significant ATO timeline benefit (2-week gain offset by validation overhead)
-- ❌ Cost premium not justified for current use case
+Incremental SA&A is an acceleration tactic, not a standalone architecture. It is appropriate where HAIL's controls baseline is validated. As the primary path it creates a hard dependency on HAIL's SA&A completion before PATH can proceed independently. Option 1 as primary, with Option 2 elements where controls can be inherited, avoids this single-point-of-failure risk.
 
-### Why Not Option 3 (Hybrid)?
+### Why Not Option 3 (On-Premises)?
 
-- ❌ Defers decision on HAIL residency (architectural ambiguity)
-- ❌ Rework cost and operational overhead during migration
-- ❌ Risk of Phase 2 never occurring (technical debt accumulates)
-- ❌ Client confusion during transition period
+No AI/PaaS capability. Incompatible with HAIL. Incompatible with enterprise AI platform architecture. Not viable within the EA planning horizon.
 
----
+### Why Not Azure Government Cloud (Azure.us)?
 
-## Dependencies & Open Items
+Azure Government Cloud (azure.us) is operated by Microsoft for US federal, state, and local government entities. Government of Canada departments are not eligible customers. This option does not exist for HC or PHAC and must not appear in GC architecture decisions.
 
-1. **SoS Validation:** Enhanced controls must pass Protected B validation in SoS process (Q1–Q2 2026)
-2. **Purview Configuration:** Must be finalized and tested before production ATO (Q2 2026)
-3. **Data Classification:** Must establish data classification taxonomy and labeling standards (Q1 2026)
-4. **DLP Policy:** Must define DLP rules and enforcement for Protected B data (Q2 2026)
-5. **HAIL Convergence Agreement:** If Scenario A, HAIL must agree to commercial Azure residency (pending HAIL production intake decisions)
+-----
 
----
+## Dependencies and Open Items
 
-## Review & Approval
+1. **HAIL SA&A Status:** Current HAIL ATO for Protected B production is a blocking constraint. Confirm current SA&A stage with Kirk before finalizing PATH SA&A approach.
+1. **SSC CBS Subscription Structure:** Confirm whether PATH will use the same SSC CBS subscription as HAIL or require a separate subscription. Decision affects FinOps and SA&A scope.
+1. **TBS 12 Guardrails Validation:** Confirm current guardrail implementation status for the existing Azure Landing Zone. Document gaps before SA&A submission.
+1. **Purview Configuration:** Sensitivity labels, DLP policies, and data classification taxonomy must be finalized before Protected B workloads onboard.
+1. **AIA Completion:** Algorithmic Impact Assessment must be completed for each AI use case before Protected B production. Confirm AIA status for HAIL workloads (IDP, epidemiological pipelines).
+1. **HAIL/PATH Convergence Agreement:** If Scenario A, HAIL and PATH must agree on shared Landing Zone, shared controls baseline, and shared SA&A approach. Requires CDO/OCDO alignment.
 
-**Proposed By:** EA Team  
-**Security Review:** Kirk (Sign-off Required)  
-**Cloud Operations Review:** Jason (Sign-off Required)  
-**Finance Review:** [Finance Lead] (Advisory)  
-**EA Leadership Approval:** Chad / Ali (Final Approval)
+-----
 
----
+## Review and Approval
+
+**Proposed By:** EA Team
+**Security Review:** Kirk (Sign-off Required)
+**Cloud Operations Review:** Jason (Sign-off Required)
+**SSC Relationship:** [SSC Account Executive or CBS Contact] (Advisory)
+**Finance Review:** [Finance Lead] (Advisory)
+**EA Leadership Approval:** Chad (Final Approval)
+
+-----
 
 ## Sign-Off
 
-- [ ] Kirk (Security) — Reviewed and concurs with enhanced controls approach
-- [ ] Jason (Cloud Ops) — Confirmed AI Foundry + Databricks availability on commercial Azure
-- [ ] EA Leadership — Approved for PATH architecture planning
+- [ ] Kirk (Security) – PBMM controls approach validated for Protected B assurance
+- [ ] Jason (Cloud Ops) – SSC CBS subscription structure and AI Foundry / Databricks availability confirmed for Canada Central / Canada East
+- [ ] EA Leadership – Approved for PATH and HAIL architecture planning
 
----
+-----
 
 ## Revision History
 
-| Version | Date | Change |
-|---|---|---|
-| 0.1 | [INSERT DATE] | Initial draft; options assessment |
+|Version|Date         |Change                                                                                                                                                                                                                                                                     |
+|-------|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|0.1    |[INSERT DATE]|Initial draft; options assessment                                                                                                                                                                                                                                          |
+|0.2    |2026-04-24   |Corrected hosting framing: replaced Azure Government Cloud (Azure.us) with GC-correct framing (SSC CBS, CCCS PBMM, Canada Central / Canada East). Added AIA, ITSG-33, TBS Guardrails to regulatory drivers. Formally rejected Azure.us as not applicable to GC departments.|
 
----
+-----
 
 *This ADR is an EA/TPO working reference. It represents EA team working interpretation, not citeable GC policy.*
-
 *Classification: Unclassified / For Internal Use*
