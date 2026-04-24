@@ -1,0 +1,163 @@
+{
+  "agent_id": "ea-platform-convergence",
+  "version": "1.0",
+  "name": "EA Solution Architecture — PATH/HAIL Convergence",
+  "description": "Support Architecture Review Board (ARB) assessment of HC/PHAC enterprise AI platform strategy convergence.",
+
+  "charter": "EA-Agent-Instructions-v1.md",
+
+  "scope": {
+    "primary_question": "Should PATH (HC-led governance control plane) and HAIL (PHAC-led operational runtime) merge into a single governed platform or remain co-equal builds with defined integration points?",
+    "target_audience": [
+      "Architecture Review Board (ARB)",
+      "EA team members and solution architects",
+      "Treasury Board Secretariat (TBS) assessors",
+      "Digital Transformation Branch (DTB) leadership"
+    ],
+    "not_in_scope": [
+      "Project management and team assignments",
+      "Budget allocation and FinOps execution",
+      "Detailed timeline and delivery scheduling",
+      "Technical engineering and implementation details"
+    ]
+  },
+
+  "deliverables": [
+    {
+      "id": "P1",
+      "name": "PATH/HAIL Convergence Framing Document",
+      "filename": "001-convergence-framing.md",
+      "word_count": "2000-2500",
+      "priority": "P1",
+      "description": "Three explicit convergence options with tradeoff analysis and EA-recommended position for ARB decision-making.",
+      "output_format": "markdown",
+      "success_gate": "ARB can articulate tradeoffs and move to decision without re-interpretation"
+    },
+    {
+      "id": "P2",
+      "name": "WAF Assessment — Operational Excellence & Reliability",
+      "filename": "002-waf-assessment.md",
+      "word_count": "1500-2000",
+      "priority": "P1",
+      "description": "Formalize WAF assessment for operational excellence and reliability pillars. Document gaps addressable within each convergence scenario.",
+      "output_format": "markdown with table",
+      "success_gate": "Security and finance stakeholders confirm risk characterization"
+    },
+    {
+      "id": "P3",
+      "name": "Risk Register — AI Platform Convergence Risks",
+      "filename": "003-risk-register.md",
+      "word_count": "1000-1500",
+      "priority": "P1",
+      "description": "Formalize risk register with convergence scenario impact analysis and escalation triggers.",
+      "output_format": "markdown table with narrative",
+      "success_gate": "Risk register tells coherent story; DG understands institutional impact"
+    },
+    {
+      "id": "P4",
+      "name": "ADR-002 — Protected B Hosting Architecture",
+      "filename": "004-adr-002.md",
+      "word_count": "800-1200",
+      "priority": "P1",
+      "description": "Resolve architectural decision on PATH Protected B hosting model with decision context, options, and rationale.",
+      "output_format": "markdown (ADR template)",
+      "success_gate": "Security and cloud ops leads sign off on decision rationale"
+    },
+    {
+      "id": "P5",
+      "name": "Shadow AI Risk Narrative",
+      "filename": "005-shadow-ai-narrative.md",
+      "word_count": "800-1200",
+      "priority": "P2",
+      "description": "Connect PATH/HAIL convergence question to business risk of workloads routing to ungoverned platforms.",
+      "output_format": "markdown",
+      "success_gate": "PMRA stakeholders recognize their use case; briefing-ready for DM/ADM"
+    }
+  ],
+
+  "assessment_framework": {
+    "baseline": "Azure Well-Architected Framework (WAF)",
+    "primary_pillars": [
+      "Operational Excellence",
+      "Reliability"
+    ],
+    "secondary_dimensions": [
+      "Governance Coherence",
+      "Data Residency & Sovereignty",
+      "FinOps Clarity",
+      "Shadow AI Risk"
+    ]
+  },
+
+  "convergence_scenarios": [
+    {
+      "id": "A",
+      "name": "Single Governed Platform (Converge)",
+      "description": "HAIL becomes runtime layer; PATH becomes governance control plane; single landing zone, unified FinOps, single ATO path.",
+      "key_tradeoffs": [
+        "Longer path to production (requires PATH maturity)",
+        "Higher upfront integration cost",
+        "Clearer long-term operating model"
+      ]
+    },
+    {
+      "id": "B",
+      "name": "Co-Equal Platforms with Defined Integration Points",
+      "description": "PATH and HAIL remain separate; governance convergence at AI Responsible Committee level; HAIL handles runtime, PATH handles governance.",
+      "key_tradeoffs": [
+        "Faster near-term delivery",
+        "Operational overhead of two platforms",
+        "FinOps complexity (per-platform cost attribution)"
+      ]
+    },
+    {
+      "id": "C",
+      "name": "PHAC-Led Single Platform (Defer PATH)",
+      "description": "Use HAIL as sole enterprise platform; incorporate PATH governance vision into HAIL's operational model.",
+      "key_tradeoffs": [
+        "Moves governance responsibility to PHAC",
+        "Requires HAIL to scale beyond current maturity",
+        "Reduces HC voice in governance design"
+      ]
+    }
+  ],
+
+  "stakeholder_validation": {
+    "security_lead": "Kirk",
+    "cloud_operations": "Jason",
+    "regulatory_stakeholders": ["Sam", "Mohamed"],
+    "ea_leadership": ["Chad", "Ali"],
+    "business_stakeholders": ["Sanaa (PMRA/Data Science)", "Monica (DM/ADM)"],
+    "validation_topics": [
+      "ATO path assumptions per scenario",
+      "Data residency implications",
+      "Foundry availability constraints",
+      "FinOps model feasibility",
+      "Use case priority and timeline sensitivity",
+      "Governance requirements",
+      "Alignment with DTB strategy and cluster model"
+    ]
+  },
+
+  "quality_standards": {
+    "artifact_format": "single-file (markdown or Word)",
+    "audience_assumption": "ARB includes finance, compliance, and non-architect decision-makers",
+    "evidence_requirement": "All claims grounded in documented source material",
+    "decision_readiness": "ARB moves to decision without requiring clarification"
+  },
+
+  "timeline_constraints": {
+    "arb_meeting": "4-6 weeks",
+    "draft_delivery": "2 weeks",
+    "iteration_cycles": 1
+  },
+
+  "success_metrics": [
+    "ARB has three explicit convergence options with clear tradeoff analysis",
+    "EA recommended position is stated and defensible",
+    "Stakeholders (security, cloud ops, PMRA, EA leadership) reviewed and provided sign-off",
+    "Risk register is current with three P1 items that convergence decision mitigates",
+    "ADR-002 completed and linked from convergence framing document",
+    "All deliverables are ARB/DM briefing-ready"
+  ]
+}
