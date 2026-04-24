@@ -1,0 +1,13 @@
+repo structure
+
+/diagram-system/
+  /spec/
+    diagram-spec-v1.json
+  /views/
+    view-01-baseline.json
+    view-02-target.json
+    view-03-control-plane.json
+    ...
+  /output/
+    pptx/
+    svg/

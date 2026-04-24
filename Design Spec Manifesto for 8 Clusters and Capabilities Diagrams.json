@@ -1,0 +1,29 @@
+{
+  "view_id": "control_plane",
+  "title": "AI Control Plane Architecture",
+
+  "columns": [
+    {
+      "name": "Users",
+      "items": ["Analysts", "Programs", "External Systems"]
+    },
+    {
+      "name": "Access Layer",
+      "items": ["Secure Gateway", "Microsoft Entra ID"]
+    },
+    {
+      "name": "Control Plane",
+      "items": ["PATH", "HAIL", "API Management"]
+    },
+    {
+      "name": "Execution",
+      "items": ["Azure AI Foundry", "RAG Services"]
+    }
+  ],
+
+  "constraints": {
+    "must_show_identity_split": true,
+    "must_show_control_plane": true,
+    "no_new_components": true
+  }
+}

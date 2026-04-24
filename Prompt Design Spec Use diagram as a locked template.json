@@ -1,0 +1,16 @@
+Use diagram-spec-v1.json as a locked template.
+
+Generate diagram using:
+view-03-control-plane.json
+
+Rules:
+- zero deviation from layout
+- no new components
+- no rewording labels
+- enforce identity separation (SG2 vs Entra)
+- enforce PATH/HAIL control plane positioning
+
+Output:
+- PPTX-ready layout
+- SVG (optional)
+- alt text included

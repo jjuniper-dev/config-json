@@ -1,0 +1,47 @@
+{
+  "template_id": "HC_EA_AI_Diagram_v1",
+  "version": "1.0",
+  "locked": true,
+
+  "layout": {
+    "type": "4-column",
+    "flow": "left-to-right",
+    "max_items_per_column": 4,
+    "spacing": "fixed",
+    "no_overlap": true
+  },
+
+  "visual_rules": {
+    "colors": {
+      "structure": "#2F6F73",
+      "components": "#6FAFB3",
+      "accent": "#A6CE39",
+      "background": "#F4F6F7",
+      "text": "#1F2A30"
+    },
+    "connectors": "straight-only",
+    "font": "sans-serif",
+    "min_font_size": 18
+  },
+
+  "semantic_layers": [
+    "title",
+    "governance_overlay",
+    "platform_components",
+    "data_context",
+    "flow_arrows"
+  ],
+
+  "identity_pattern": {
+    "external": "Secure Gateway",
+    "internal": "Microsoft Entra ID",
+    "rule": "must be visually separated"
+  },
+
+  "ai_architecture_constraints": {
+    "control_plane": ["PATH", "HAIL"],
+    "data_plane": ["Purview", "Fabric", "Databricks"],
+    "runtime": ["Azure AI Foundry"],
+    "no_mixing_layers": true
+  }
+}
